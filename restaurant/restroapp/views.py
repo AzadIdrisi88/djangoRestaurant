@@ -69,3 +69,7 @@ def home(request):
      
           # return HttpResponse("Welcome  "+ currentuser)
           
+def logout(request):
+     session=request.session
+     session.pop("username")
+     return redirect('/login')
