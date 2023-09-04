@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>swapi</title>
+</head>
+<body>
+    <center><h3>{{filmno}}</h3>
+          <h2>{{status}}</h2>
+    <h3>Film Title :{{result.title}}</h3>
+    <h3>Director :{{result.director}}</h3>
+    <h3>Producer :{{result.producer}}</h3>
+    <h3>Film Release Date :{{result.release_date}}</h3>
+    <form>
+        Films :<input type="number" name="filmno" value={{filmno}}><br>
+       <!-- Actors: <input type="number" name="actor" value={{actor}}> -->
+        <button type="submit">Submit</button>
+    </form>
+    <table border="1">
+        <tr><th>People</th></tr>
+        {% for p in people %}
+        <tr><td><a target="_blank" href="/people?peopleno={{p}}">{{p}}</a></td></tr>
+        {% endfor %}
+    </table>
+    
+    </center>
+</body>
+</html>

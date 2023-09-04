@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+</head>
+<body>
+    <!-- {{data}} -->
+    <h2>{{result}}</h2>
+    <table border="1"  >
+        <tr><th>Id</th><th>Name</th><th>Author</th><th>Category</th><th>Update</th><th>Delete</th></tr>
+    {% for book in data%}
+<tr><td>{{book.id}}</td><td>{{book.name}}</td><td>{{book.author}}</td>
+    <td>{{book.category}}</td><td><a href="update.html?id={{book.id}}">Update</a></td>
+<td><a href="delete.html">Delete</a></td></tr>
+
+    {% endfor %}
+</table>
+    <form>
+        enter category:
+        <input type="text" name="category" value="{{category}}"><br>
+        <input type="submit"><br><br>
+        
+    </form>
+</body>
+</html>

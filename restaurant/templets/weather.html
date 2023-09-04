@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather</title>
+</head>
+<body>
+    <center>
+    <form>
+        <input type="text" value="{{city}}" name="city"></br>
+        <button type="submit">Submit</button><br>
+    </form>
+    {{result}}
+    
+    <br>
+    <h3>Temperature:{{result.main.temp}}</h3>
+    <h3> Air Pressure : {{result.main.pressure}}</h3>
+    <h3>Humidity : {{result.main.humidity}}</h3>
+    <h3></h3>
+    <img src="https://openweathermap.org/img/w/{{img}}.png" width="250px"/>
+   </center>
+</body>
+</html>
