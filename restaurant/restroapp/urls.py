@@ -14,4 +14,5 @@ urlpatterns = [
  path('swapi/',views.swapi),
  path('update/',views.update),
  path('people/',views.people),
+ path('movie/',views.movie),
 ]

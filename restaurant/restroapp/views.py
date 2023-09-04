@@ -236,3 +236,19 @@ def swapi(request):
             status="error"
     return render(request,"swapi.html",{"filmno":filmno,"people":result["characters"],"result":result,"status":status})
         # return HttpResponse(response.text)
+
+
+def movie(request):
+    result=""
+    url="https://gist.githubusercontent.com/AzadIdrisi88/fd0cd6d617c599c183b23e2ef7378b10/raw/b4c139836ddee6d776e1162d6983ed6a1c9eaa25/mysecondgist"
+    response=requests.get(url)
+    code=response.status_code
+    print(code)
+    if code !=200:
+            status="error"
+            print("error")
+            return HttpResponse("Error")
+    else:
+         result=json.loads(response.text)
+         status=''
+    return render(request,"film.html",{"result":result,"status":status})        
