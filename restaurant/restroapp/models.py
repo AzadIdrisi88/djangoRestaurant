@@ -17,3 +17,10 @@ class bookmodel(models.Model):
 
    def __str__(self):
       return "category={0},author={1},name={2}".format(self.category,self.author,self.name)
+   
+class apimodel(models.Model):
+   city=models.CharField(max_length=100)
+   jsondata=models.CharField(max_length=1000)   
+
+   def __str__(self):
+      return "city={0},jsondata{1}".format(self.city,self.jsondata)

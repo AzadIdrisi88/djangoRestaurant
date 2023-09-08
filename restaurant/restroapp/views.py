@@ -1,8 +1,56 @@
 from django.shortcuts import render, redirect,HttpResponse
-from .models import bookmodel, restroModel
+from .models import bookmodel, restroModel,apimodel
 import json
 import requests
 # Create your views here.
+
+# def getWeather(city):
+def getWeather(request):   
+    city='' 
+    result=''
+    appid="185a5b60b5b86a369f84a06359abb723"
+    if request.GET:
+        city=request.GET['city']
+    url="https://api.openweathermap.org/data/2.5/weather?q={1}&appid={0}&units=metric".format(appid,city)
+    # url = "https://api.openweathermap.org/data/2.5/forecast?lat=25.3333&lon=83&appid=4a1f8a61b74546825af1e0be106e797b&units=metric"
+    response=requests.get(url)
+    result=json.loads(response.text)
+    jsondata=result
+    ob=apimodel()
+    ob.city=city
+    ob.jsondata=jsondata
+    ob.save()
+    return render(request,"getcity.html",{"city":city,"result":result})
+# return response.text
+# cities="Delhi,Lucknow,Varanasi,Jaipur,jaunpur,Mumbai"
+# cities=cities.split(",")
+# for city in cities:
+#     data=getWeather(city)
+#     jsondata=data
+#     # print(city,"\n",data,",",len(data),"\n")
+#     print(len(data),"\n")
+
+#     ob=apimodel()
+#     ob.city=city
+#     ob.jsondata=jsondata
+#     ob.save()
+
+def getwdata(request):
+    city=''
+    data=''
+    result=''
+    status=''
+    if request.GET:
+        city=request.GET['city']
+        data=apimodel.objects.filter(city=city)
+        if len(data)<=0:
+            result='not found'
+        else:
+            data=data[0]
+            status=data
+            result='success'
+    return render (request,'find.html',{'result':result,'city':city,'status':status})
+    
 
 
 
@@ -16,8 +64,8 @@ def people(request):
             print("error")
             return HttpResponse("Error")
     else:
-         result=response.text
-         return HttpResponse(result)
+         result=json.loads(response.text)
+         return render(request,"people.html",{"result":result})
         
     return HttpResponse(url)
 
@@ -240,7 +288,7 @@ def swapi(request):
 
 def movie(request):
     result=""
-    url="https://gist.githubusercontent.com/AzadIdrisi88/fd0cd6d617c599c183b23e2ef7378b10/raw/b4c139836ddee6d776e1162d6983ed6a1c9eaa25/mysecondgist"
+    url="https://gist.githubusercontent.com/AzadIdrisi88/fd0cd6d617c599c183b23e2ef7378b10/raw/2b76d7d01c7ae03cc6cfcd965c9bb49ef3935ac0/mysecondgist"
     response=requests.get(url)
     code=response.status_code
     print(code)

@@ -15,4 +15,6 @@ urlpatterns = [
  path('update/',views.update),
  path('people/',views.people),
  path('movie/',views.movie),
+ path('city/',views.getWeather),
+ path('find/',views.getwdata),
 ]
