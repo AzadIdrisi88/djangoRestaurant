@@ -235,7 +235,7 @@ def weather(request):
     if request.GET:
        city=request.GET["city"]
     #    city=input("Enter city\n")
-    params={'aaid':appid,"q":city,"units":"metric"}
+    params={'aapid':appid,"q":city,"units":"metric"}
     url="https://api.openweathermap.org/data/2.5/weather?q={1}&appid={0}&units=metric".format(appid,city)
     # url = "https://api.openweathermap.org/data/2.5/forecast?lat=25.3333&lon=83&appid=4a1f8a61b74546825af1e0be106e797b&units=metric"
     response=requests.get(url,params)
